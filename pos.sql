@@ -49,11 +49,27 @@ CREATE TABLE `categorias` (
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+CREATE TABLE `medios`(
+  `id` int(11) NOT NULL,
+  `categoria` text COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+CREATE TABLE `prospectos`(
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `id_medio` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 CREATE TABLE `clientes`(
   `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nombre` text COLLATE utf8_spanish_ci NOT NULL,
   `empresa` text COLLATE utf8_spanish_ci NOT NULL,
+  `razon_social` text COLLATE utf8_spanish_ci NOT NULL,
   `rfc` text COLLATE utf8_spanish_ci NOT NULL,
   `email` text COLLATE utf8_spanish_ci NOT NULL,
   `telefono` text COLLATE utf8_spanish_ci NOT NULL,
@@ -63,6 +79,7 @@ CREATE TABLE `clientes`(
   `estado` text COLLATE utf8_spanish_ci NOT NULL,
   `pais` text COLLATE utf8_spanish_ci NOT NULL,
   `codigo_postal` text COLLATE utf8_spanish_ci NOT NULL,
+  `status` int(11) NOT NULL,
   `compras` int(11) NOT NULL,
   `ultima_compra` datetime NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -112,7 +129,7 @@ CREATE TABLE `usuarios` (
 --
 -- Dumping data for table `usuarios`
 --
-
+ 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
 (1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/191.jpg', 1, '2018-02-06 17:25:57', '2018-02-06 22:25:57');
 -- --------------------------------------------------------
