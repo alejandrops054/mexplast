@@ -57,15 +57,16 @@ if($_SESSION["perfil"] == "Especial"){
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Nombre</th>
-           <th>Documento ID</th>
-           <th>Email</th>
-           <th>Teléfono</th>
-           <th>Dirección</th>
-           <th>Fecha nacimiento</th> 
-           <th>Total compras</th>
-           <th>Última compra</th>
-           <th>Ingreso al sistema</th>
+            <th>Nombre del Cliente</th>
+            <th>Empresa</th>
+            <th>RFC</th>
+            <th>Email</th>
+            <th>Télefono</th>
+            <th>Dirección</th>
+            <th>Ciudad</th>
+            <th>CP</th>
+            <th>No.Compras</th>
+            <th>Status</th>
            <th>Acciones</th>
 
          </tr> 
@@ -143,8 +144,78 @@ if($_SESSION["perfil"] == "Especial"){
 <!--=====================================
 MODAL AGREGAR CLIENTE
 ======================================-->
+<div class="modal fade" id="modalAgregarCliente" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
 
-<div id="modalAgregarCliente" class="modal fade" role="dialog">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Cliente</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group col-md-12">
+            <p class="col-md-12">Información del contacto</p>
+
+            <div class="col-md-6">
+              <input type="text" class="form-control input-lg" name="nuevoCliente" placeholder="Ingresar nombre" required><br/>
+              
+              <select class="form-control input-lg" name="nuevomedio">
+                <option>Selecciona medio de contacto</option>
+
+              </select><br/>
+
+
+              <input type="text" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar numero télefonico" required><br/>
+              <input type="text" class="form-control input-lg" name="nuevoempresa" placeholder="Ingresar nombre de la empresa Empresa" required><br/>
+            
+            </div>
+
+
+            <div class="col-md-6">
+              <input type="email" class="form-control input-lg" name="nuevoCorreo" placeholder="Ingresar Correo" required><br/>
+              
+              <select class="form-control input-lg" name="nuevotipocliente">
+                <option>Selecciona tipo de cliente</option>
+                <option value="1">Prospecto</option>
+                <option value="2">Cliente</option>
+              </select><br/>
+              
+              <input type="text" class="form-control input-lg" name="nuevorfc" placeholder="Ingresar RFC" required><br/>
+
+              <input type="text" class="form-control input-lg" name="nuevodireccion" placeholder="Ingresar direccion" required><br/>
+
+              <input type="text" class="form-control input-lg" name="nuevoestado" placeholder="Ingresar estado" required><br/>
+
+              <input type="text" class="form-control input-lg" name="nuevocodigo_postal" placeholder="Ingresar codigo postal" required><br/>
+            </div>
+          </div>
+        
+
+          <div class="col-md-12">
+            <p class="col-md-12">Información de la empresa</p>
+
+            <div class="col-md-6">
+              
+
+              <input type="text" class="form-control input-lg" name="nuevocalle" placeholder="Ingresar calle" required><br/>
+
+              <input type="text" class="form-control input-lg" name="nuevociudad" placeholder="Ingresar ciudad" required><br/>
+
+              <input type="text" class="form-control input-lg" name="nuevopais" placeholder="Ingresar pais" required><br/>
+            </div>
+            <div class="col-md-6">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div id="" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
