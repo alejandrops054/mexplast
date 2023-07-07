@@ -60,6 +60,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
            <th>Usuario</th>
            <th>Foto</th>
            <th>Perfil</th>
+           <th>Pass</th>
            <th>Estado</th>
            <th>Último login</th>
            <th>Acciones</th>
@@ -72,55 +73,43 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
 
         <?php
 
-        $item = null;
-        $valor = null;
+$item = null;
+$valor = null;
 
-        $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
-       foreach ($usuarios as $key => $value){
-         
-          echo ' <tr>
-                  <td>'.($key+1).'</td>
-                  <td>'.$value["nombre"].'</td>
-                  <td>'.$value["usuario"].'</td>';
+foreach ($usuarios as $key => $value){
+    $contrasenaDesencriptada = crypt($value["password"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+    echo '<tr>
+              <td>'.($key+1).'</td>
+              <td>'.$value["nombre"].'</td>
+              <td>'.$value["usuario"].'</td>';
 
-                  if($value["foto"] != ""){
+    if($value["foto"] != ""){
+        echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
+    }else{
+        echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+    }
 
-                    echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
+    echo '<td>'.$value["perfil"].'</td>';
 
-                  }else{
+    if($value["estado"] != 0){
+        echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="0">Activado</button></td>';
+    }else{
+        echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="1">Desactivado</button></td>';
+    }
 
-                    echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+    echo '<td>'. $contrasenaDesencriptada .'</td>';
 
-                  }
-
-                  echo '<td>'.$value["perfil"].'</td>';
-
-                  if($value["estado"] != 0){
-
-                    echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="0">Activado</button></td>';
-
-                  }else{
-
-                    echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="1">Desactivado</button></td>';
-
-                  }             
-
-                  echo '<td>'.$value["ultimo_login"].'</td>
-                  <td>
-
-                    <div class="btn-group">
-                        
-                      <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
-
-                      <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
-
-                    </div>  
-
-                  </td>
-
-                </tr>';
-        }
+    echo '<td>'.$value["ultimo_login"].'</td>
+          <td>
+            <div class="btn-group">
+                <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+                <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
+            </div>  
+          </td>
+    </tr>';
+}
 
 
         ?> 
